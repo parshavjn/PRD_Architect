@@ -1,0 +1,6 @@
+{
+  "name": "Founders' PRD Architect",
+  "description": "An AI-powered PRD generator that converts messy startup ideas and scattered user feedback into execution-ready product specifications.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
