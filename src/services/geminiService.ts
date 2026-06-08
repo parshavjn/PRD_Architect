@@ -13,7 +13,7 @@ export async function generatePRD(inputs: PRDInputs): Promise<string> {
   
   const prompt = `
 Act as a senior product manager, startup founder advisor, UX strategist, and prototype planner.
-Convert the following raw startup input into a structured, execution-ready PRD.
+Convert the following raw startup input into a structured, execution-ready Strategic PRD.
 
 RAW INPUT:
 1. Startup/Product Idea: ${inputs.idea}
@@ -23,55 +23,93 @@ RAW INPUT:
 5. Constraints: ${inputs.constraints}
 
 OUTPUT FORMAT (Markdown):
+Please output the PRD containing exactly the following sections in this exact order. Ensure each section is rich, detailed, and directly synthesised from the raw input, applying PM frameworks (e.g., Mom's Test, ICE, JTBD):
 
-### 1. Product Summary
-- Product / feature name
-- One-line pitch
-- What problem it solves
-- Why this matters now
-- Who it is for
+### 1. Mission
+- Describe the core mission of the product and company based on the idea and vision.
 
-### 2. Background and Context
-- What triggered this product idea
-- What user feedback suggests
-- What patterns are visible in the feedback
-- What the founder likely believes
-- What assumptions are being made
+### 2. Revenue Source
+- Outline the proposed business model, monetization strategy, and revenue sources.
 
-### 3. Problem Statement
-- Primary problem
-- Secondary problems
-- Current user pain points
-- Why existing workflow fails
-- Why current feedback collection is not actionable
+### 3. Competitive Positioning
+- Analyze the competitive landscape. Detail how the product differentiates itself from key competitors.
 
-### 4. Target Users
-For each major user segment:
-- User type, Goals, Pain points, Context of use, Frequency of use, Success metrics.
+### 4. Flow and Friction
+- **Friction Areas:** Detail onboarding/entry, core value delivery, return/habit formation, and decision/commitment friction.
+- **Behavioral Friction Table:** Generate a markdown table listing behavioral friction reported by users:
+  | Friction Point | User Flow Stage | Description | Impact (High/Med/Low) |
 
-### 5. Jobs to Be Done (JTBD)
-- 3–5 statements (When... I want to... So I can...)
+### 5. Feature Reverse Engineering
+- For the primary proposed features, break down:
+  - How it works
+  - Business value
+  - User value
+  - Why it works and why it fails
 
-### 6. Key Insights from Feedback
-- Cluster raw feedback into: Repeated pain points, Feature requests, Workflow bottlenecks, Emotional signals, Unmet needs.
-- For each insight: Insight, Evidence, Product implication, Priority (High/Med/Low).
+### 6. User Segment
+- Define:
+  - Primary segment
+  - Sub-segments
+  - Core needs
+  - Observed problems
 
-### 7. Product Goals
-- User goals, Business goals, Product goals, Non-goals for v1.
+### 7. Hypothesis
+- State hypotheses in the format: "Observed friction - User segment - Source / Evidence".
 
-### 8. MVP Scope
-- Must have (Feature, User Value, Description, Why it matters, Minimal Version)
-- Nice to have
-- Not now
+### 8. User Interview Questions (Mom's Test) & JTBD
+- **Mom's Test Questions:** Create non-leading questions to ask users (following the Mom's Test methodology).
+- **Jobs to Be Done (JTBD):** Define key JTBD statements (When... I want to... So I can...).
+- **Hypothesis Check:** Summarize feedback validation based on sources like Reddit, LinkedIn, Google Play Store.
+- **Competitor Solutions:** Analyze how competitors solve the problems identified in user interviews.
 
-### 9. Functional Requirements
-- Requirement ID, Description, Trigger.
+### 9. Clustering Problems & Finding Direction
+- **Metric-based Grouping:** Group validated user problems by the business metrics they affect.
+- **Focus Area:** Explicitly choose which cluster of problems to focus on.
+- **Goal Statement / Goal Setting:** Formulate a clear, measurable product goal statement.
 
-### 10. Suggested Screens
-- Detailed description of key screens for the v1 prototype. Include component placement, primary actions, and feedback loops.
+### 10. User Persona (Need vs. Problem)
+- Outline key user personas, explicitly detailing their needs versus the actual problems they encounter.
+
+### 11. Problem Prioritization
+- Prioritize identified user problems based on severity, frequency, and strategic alignment.
+
+### 12. P0 Statement
+- Define the absolute must-solve problem (P0) that the current iteration is focused on.
+
+### 14. Solution Space
+- Explore the range of potential solutions for the P0 problem.
+
+### 15. Brain Solution Matrix
+- Describe proposed solutions including:
+  - Short description
+  - Key assumption(s)
+  - Category (Moonshot, High Confidence, Low Confidence)
+
+### 16. Solution Prioritization (ICE)
+- Prioritize solutions using a markdown table based on ICE framework:
+  | Solution | Impact (1-10) | Confidence (1-10) | Ease (1-10) | ICE Score (I * C * E) |
+
+### 17. Prototype
+- Detail the flow, features, and specs of the MVP prototype to be built.
+
+### 18. Metric
+- List primary and secondary North Star/success metrics for the prototype.
+
+### 19. Guardrails
+- Define guardrail metrics to monitor (to ensure the solution doesn't negatively impact other parts of the business or product).
+
+### 20. Pitfalls & Mitigation
+- Predict potential failure modes, user drop-off points, or technical pitfalls, along with clear mitigation strategies.
+
+### 21. PRD (Detailed Requirements)
+- Document the detailed functional and technical requirements for engineers to build the solution. Include:
+  - Requirement ID, description, and user stories.
+  - Screen placement, interactions, and primary UI feedback loops.
 
 CRITICAL INSTRUCTIONS:
-- If feedback is vague (solution-biased), rewrite it into user needs.
+- **Groundedness:** Base all sections strictly on the provided raw inputs (Startup/Product Idea, User Feedback/Notes, Founder Assumptions/Vision, Business Goals, Constraints). Do not hallucinate external features, requirements, or user segments that are completely unrelated or conflict with the provided inputs.
+- **Unbiased & Objective Analysis:** Avoid promotional language, product hype, or buzzwords. Maintain an objective, neutral product strategy tone. Critique founder assumptions critically using Mom's Test logic, and clearly state when assumptions lack validation or present strategic risks.
+- If feedback is vague (solution-biased), rewrite it into objective user needs.
 - If any input is missing, infer cautiously and clearly mark as [ASSUMPTION].
 - Keep the solution lean and MVP-focused.
 - Ensure the spec is detailed enough for an AI prototype builder to act on immediately.
