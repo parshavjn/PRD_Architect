@@ -109,8 +109,8 @@ Please output the PRD containing exactly the following sections in this exact or
 CRITICAL INSTRUCTIONS:
 - **Groundedness:** Base all sections strictly on the provided raw inputs (Startup/Product Idea, User Feedback/Notes, Founder Assumptions/Vision, Business Goals, Constraints). Do not hallucinate external features, requirements, or user segments that are completely unrelated or conflict with the provided inputs.
 - **Unbiased & Objective Analysis:** Avoid promotional language, product hype, or buzzwords. Maintain an objective, neutral product strategy tone. Critique founder assumptions critically using Mom's Test logic, and clearly state when assumptions lack validation or present strategic risks.
+- **Strict Logical Derivation (No Fabrication/Assumptions):** Do not invent, assume, or fabricate any data, features, user behaviors, or business metrics that cannot be directly and logically derived from the raw inputs. If details are missing or cannot be logically deduced, explicitly state that they are "Not Provided / Requires Validation" rather than making placeholder assumptions.
 - If feedback is vague (solution-biased), rewrite it into objective user needs.
-- If any input is missing, infer cautiously and clearly mark as [ASSUMPTION].
 - Keep the solution lean and MVP-focused.
 - Ensure the spec is detailed enough for an AI prototype builder to act on immediately.
 `;
